@@ -1,6 +1,7 @@
 import sys
 # import modules
 from modules.help_messages import usage_message
+from modules.version import __version__ as app_version
 
 # abcmn cli tool entry
 """
@@ -48,7 +49,7 @@ if __name__ == "__main__":
     elif argv[1] == "stats":
         print("stats")
     elif argv[1] == "version":
-        print("version")
+        print(f"Version: {app_version}")
     elif argv[1] == "help":
         print(usage_message)
     else:
