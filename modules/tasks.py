@@ -2,6 +2,8 @@
 import json
 import os
 
+from modules.help_messages import usage_message
+
 class Task:
     """
     Task class
@@ -148,7 +150,6 @@ def list_tasks():
 
 
 def tasks(argv):
-    usage_message = "Usage: tasks [list|add|remove|update|complete|uncomplete]"
     if len(argv) < 3:
         print(usage_message)
         return
