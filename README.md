@@ -17,6 +17,8 @@ abcmn <command> [options]
 - **tasks \<sub-command\>**: manage the tasks
 - **timer \<sub-command\>**: manage the timer
 - **stats**: show the statistics
+- **version**: show the version
+- **help**: show the help
 
 ### Tasks sub-command:
 - **list**: list all tasks
