@@ -1,2 +1,9 @@
 # abcmn
-abcmn is a tool to help with you git workflow, tasks management, and timing your coding sessions
+abcmn is a tool to help with your git workflow, task management, and timing of your coding sessions
+
+## Authors
+- Andrew
+- Bruce
+- Clarisse
+- Mutumwinka
+- Neema
