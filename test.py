@@ -1,4 +1,6 @@
 import sys
+from os import system
+
 # import modules
 from modules.help_messages import usage_message
 
@@ -40,17 +42,17 @@ if __name__ == "__main__":
         print(usage_message)
         sys.exit(1)
     if argv[1] == "watch":
-        print("watch")
+        system("python3 main.py watch")
     elif argv[1] == "tasks":
-        print("tasks")
+        system("python3 main.py tasks")
     elif argv[1] == "timer":
-        print("timer")
+        system("python3 main.py timer")
     elif argv[1] == "stats":
-        print("stats")
+        system("python3 main.py stats")
     elif argv[1] == "version":
-        print("version")
+        system("python3 main.py version")
     elif argv[1] == "help":
         print(usage_message)
     else:
-        print("file path")
+        system(f"python3 main.py {argv[1]}")
     sys.exit(0)
