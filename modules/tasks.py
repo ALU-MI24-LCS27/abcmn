@@ -149,7 +149,7 @@ def list_tasks():
         print(f"{index + 1}. {task}")
 
 
-def tasks(argv):
+def handle_tasks_command(argv):
     if len(argv) < 3:
         print(usage_message)
         return
