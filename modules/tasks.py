@@ -4,10 +4,12 @@ import os
 
 from modules.help_messages import usage_message
 
+
 class Task:
     """
     Task class
     """
+
     def __init__(self, name, completed=False):
         self.__name = name
         self.__completed = completed
