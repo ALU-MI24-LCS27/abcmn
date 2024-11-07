@@ -46,3 +46,9 @@ abcmn <command> [options]
 - **\$timer**: the current timer
 <br/>
 *variables are coming soon...*
+<br/><br/>
+<br/>*This project is still in development, so please be patient and stay tuned for updates!*
+<br/>*Windows support is coming soon...*
+<br/>*Feel free to contribute to the project by forking the repository and submitting a pull request!*
+<br/>*In case of any issues, please submit an issue on the repository!*
+<br/>*Thank you for your support!*
