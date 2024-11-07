@@ -1,7 +1,8 @@
 usage_message = """Usage: abcmn <command> [options]
 
 Commands:
-    watch <path>\t watch a file or directory for changes
+    init\t initialize the repository
+    push\t push changes to the repository
     tasks <sub-command>\t manage the tasks
     timer <sub-command>\t manage the timer
     stats\t show the statistics
@@ -22,7 +23,7 @@ Timer sub-command:
     stop\t stop the timer
     reset\t reset the timer
 
-Options (watch):
+Options (push):
     --message\t the commit message template
 
 Variables:

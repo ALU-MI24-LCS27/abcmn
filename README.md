@@ -13,7 +13,8 @@ abcmn is a tool to help with your git workflow, task management, and timing of y
 abcmn <command> [options]
 ```
 ### Commands:
-- **watch \<path\>**: watch a file or directory for changes and push them to the git repository
+- **init**: initialize the abcmn tool
+- **push**: push changes to the repository
 - **tasks \<sub-command\>**: manage the tasks
 - **timer \<sub-command\>**: manage the timer
 - **stats**: show the statistics
@@ -34,9 +35,14 @@ abcmn <command> [options]
 - **stop**: stop the timer
 - **reset**: reset the timer
 
-### Options (watch):
+### Options (push):
 - **--message**: the commit message template
 
-### Variables:
+### Variables (commit message template):
 - **\$file**: the changed file path
 - **\$date**: the current date
+- **\$time**: the current time
+- **\$task**: the current task
+- **\$timer**: the current timer
+<br/>
+*variables are coming soon...*
