@@ -158,16 +158,24 @@ def handle_tasks_command(argv):
         list_tasks()
     elif sub_command == "add":
         add_task()
+        task_manager.save()
+        print("Task saved.")
     elif sub_command == "remove":
         remove_task()
+        task_manager.save()
+        print("Task saved.")
     elif sub_command == "update":
         update_task()
+        task_manager.save()
+        print("Task saved.")
     elif sub_command == "complete":
         complete_task()
+        task_manager.save()
+        print("Task saved.")
     elif sub_command == "uncomplete":
         uncomplete_task()
+        task_manager.save()
+        print("Task saved.")
     else:
         print(usage_message)
         return
-    task_manager.save()
-    print("Task saved.")
