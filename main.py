@@ -23,6 +23,13 @@ if __name__ == "__main__":
         init_abcmn_dir()
         sys.exit(0)
 
+    if argv[1] == "help":
+        print(usage_message)
+        sys.exit(0)
+    elif argv[1] == "version":
+        print(f"Version: {app_version}")
+        sys.exit(0)
+
     __abcmn_dir = os.path.join(".abcmn")
     if not os.path.exists(__abcmn_dir):
         print("Please run 'abcmn init' to initialize the tool")
@@ -36,10 +43,6 @@ if __name__ == "__main__":
         handle_timer_command(argv)
     elif argv[1] == "stats":
         handle_stats_command()
-    elif argv[1] == "version":
-        print(f"Version: {app_version}")
-    elif argv[1] == "help":
-        print(usage_message)
     else:
         print(usage_message)
         sys.exit(1)
