@@ -27,8 +27,6 @@ Options (push):
     --message\t the commit message template
 
 Variables:
-    $file\t the changed file path
     $date\t the current date
     $timer\t the current timer value
-    $task\t the current task
 """

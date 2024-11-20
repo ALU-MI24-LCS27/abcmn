@@ -1,7 +1,7 @@
 import os
 import subprocess
 from datetime import datetime
-from modules.timer import __internal_get_timer_status
+from modules.timer import __internal_get_timer_status_and_push
 from modules.tasks import __internal_complete_current_task
 
 
@@ -71,15 +71,13 @@ def parse_message(raw_message):
     #     - {{_<prop>}} you can use _ to escape the curly braces eg, {{_task}} will be replaced with {task}
     file = "changed name file"
     date = datetime.now().strftime('%Y-%m-%d')
-    timer = __internal_get_timer_status()
+    timer = __internal_get_timer_status_and_push()
     task = __internal_complete_current_task()
 
-    parsed_message = raw_message.replace("{{file}}", file)
-    parsed_message = parsed_message.replace("{{date}}", date)
+    parsed_message = raw_message.replace("{{date}}", date)
     parsed_message = parsed_message.replace("{{timer}}", timer)
     parsed_message = parsed_message.replace("{{task}}", task)
     # Escape curly braces
-    parsed_message = parsed_message.replace("{{_file}}", "{file}")
     parsed_message = parsed_message.replace("{{_date}}", "{date}")
     parsed_message = parsed_message.replace("{{_timer}}", "{timer}")
     parsed_message = parsed_message.replace("{{_task}}", "{task}")

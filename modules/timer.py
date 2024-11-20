@@ -41,9 +41,10 @@ class BackgroundTimer:
         except OSError:
             return False
 
-    def start(self):
+    def start(self, loggable=True):
         if self.is_running():
-            print("Timer is already running!")
+            if loggable:
+                print("Timer is already running!")
             return
 
         # Store start time
@@ -71,14 +72,14 @@ class BackgroundTimer:
 
         # Store PID
         self.write_pid(process.pid)
-        print(f"Timer started")
-        # print(f"Timer started with PID: {process.pid}")
-        # print(f"Logging to: {self.output_file}")
+        if loggable:
+            print(f"Timer started")
 
-    def stop(self):
+    def stop(self, loggable=True):
         pid = self.read_pid()
         if pid is None:
-            print("No timer is running!")
+            if loggable:
+                print("No timer is running!")
             return
 
         try:
@@ -100,7 +101,8 @@ class BackgroundTimer:
             # Clean up PID file
             os.remove(self.pid_file)
             os.remove(self.start_time_file)
-            print("Timer stopped")
+            if loggable:
+                print("Timer stopped")
 
         except ProcessLookupError:
             print("Timer process not found")
@@ -108,7 +110,7 @@ class BackgroundTimer:
         except FileNotFoundError:
             print("PID file not found")
 
-    def reset(self):
+    def reset(self, loggable=True):
         # Stop the timer if it's running
         if self.is_running():
             self.stop()
@@ -116,8 +118,8 @@ class BackgroundTimer:
         # Clear the log file
         with open(self.output_file, 'w') as f:
             f.write(f"Timer reset at: {datetime.now().strftime('%Y-%m-%d %H:%M:%S')}\n")
-
-        print("Timer reset")
+        if loggable:
+            print("Timer reset")
 
     def status(self, loggable=True):
         if self.is_running():
@@ -168,7 +170,7 @@ def handle_timer_command(argv):
         print("Invalid command for timer")
 
 
-def __internal_get_timer_status():
+def __internal_get_timer_status_and_push():
     __timer_file = os.path.join(".abcmn", "timer_log.lap")
     if not os.path.exists(__timer_file):
         print("No timer log found")
@@ -176,4 +178,5 @@ def __internal_get_timer_status():
 
     timer = BackgroundTimer()
     timer_status = timer.status(loggable=False)
+    timer.stop(loggable=False)
     return timer_status if timer_status is not None else "'Timer not running'"

@@ -97,6 +97,10 @@ class TaskManager:
     def get_current_task(self) -> Task:
         return self.__tasks[self.__current_task] if self.__current_task is not None else None
 
+    def set_current_task(self, task):
+        self.__current_task = self.__tasks.index(task)
+        self.save()
+
 
 task_manager = TaskManager()
 
