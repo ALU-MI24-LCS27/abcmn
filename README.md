@@ -41,9 +41,8 @@ abcmn <command> [options]
 ### Variables (commit message template):
 - **\$file**: the changed file path
 - **\$date**: the current date
-- **\$time**: the current time
+- **\$timer**: the current timer value
 - **\$task**: the current task
-- **\$timer**: the current timer
 <br/>
 *variables are coming soon...*
 <br/><br/>
