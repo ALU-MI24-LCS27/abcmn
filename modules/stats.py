@@ -6,7 +6,7 @@ from modules.tasks import task_manager
 
 
 class Stats:
-    def _init_(self):
+    def __init__(self):
         self.completed_tasks = 0
         self.pending_tasks = 0
         self.commits = 0

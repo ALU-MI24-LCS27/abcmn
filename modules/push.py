@@ -1,4 +1,3 @@
-import sys
 import os
 import subprocess
 from datetime import datetime
@@ -16,7 +15,7 @@ def run_command(command):
 
 
 class GitHelper:
-    def _init_(self, default_message=None):
+    def __init__(self, default_message=None):
         self.__default_message = default_message
 
     def push_changes(self):
