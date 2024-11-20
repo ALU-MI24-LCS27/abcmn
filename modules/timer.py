@@ -13,6 +13,7 @@ Timer sub-command:
     reset\t reset the timer
 """
 
+
 class BackgroundTimer:
     def __init__(self):
         self.pid_file = os.path.join(".abcmn", "timer.pid")
@@ -128,10 +129,21 @@ class BackgroundTimer:
                     minutes = int((elapsed % 3600) // 60)
                     seconds = int(elapsed % 60)
                     print(f"Timer is running for {hours:02d}:{minutes:02d}:{seconds:02d}")
+                    time_stamp = datetime(
+                        hour=hours,
+                        minute=minutes,
+                        second=seconds,
+                        year=datetime.now().year,
+                        month=datetime.now().month,
+                        day=datetime.now().day
+                    )
+                    return time_stamp.strftime('%H-%M-%S')
             except FileNotFoundError:
                 print("Timer is running (start time unknown)")
+                return None
         else:
             print("Timer is not running")
+            return None
 
 
 def handle_timer_command(argv):
@@ -151,3 +163,14 @@ def handle_timer_command(argv):
         timer.reset()
     else:
         print("Invalid command for timer")
+
+
+def __internal_get_timer_status():
+    __timer_file = os.path.join(".abcmn", "timer_log.lap")
+    if not os.path.exists(__timer_file):
+        print("No timer log found")
+        sys.exit(1)
+
+    timer = BackgroundTimer()
+    timer_status = timer.status()
+    return timer_status if timer_status is not None else "'Timer not running'"

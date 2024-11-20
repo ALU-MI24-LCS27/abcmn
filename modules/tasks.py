@@ -53,17 +53,23 @@ class TaskManager:
 
     def __init__(self):
         self.__tasks = []
+        self.__current_task = None
         self.load()
 
     def load(self):
         if os.path.exists(self.__tasks_file):
             with open(self.__tasks_file, "r") as file:
-                self.__tasks = [Task.from_dict(task) for task in json.load(file)]
+                loaded_json = json.load(file)
+                self.__tasks = [Task.from_dict(task) for task in loaded_json["tasks"]]
+                self.__current_task = json.load(file).current if loaded_json["current"] is not None else None
 
     def save(self):
         os.makedirs(os.path.dirname(self.__tasks_file), exist_ok=True)
         with open(self.__tasks_file, "w") as file:
-            json.dump([task.to_dict() for task in self.__tasks], file)
+            json.dump({
+                "current": self.__current_task,
+                "tasks": [task.to_dict() for task in self.__tasks]
+            }, file)
 
     def add(self, task):
         self.__tasks.append(task)
@@ -87,6 +93,9 @@ class TaskManager:
 
     def list(self):
         return [(index, task) for index, task in enumerate(self.__tasks)]  # [(index, task)]
+
+    def get_current_task(self) -> Task:
+        return self.__tasks[self.__current_task] if self.__current_task is not None else None
 
 
 task_manager = TaskManager()
@@ -181,3 +190,12 @@ def handle_tasks_command(argv):
     else:
         print(usage_message)
         return
+
+
+def __internal_complete_current_task():
+    current_task = task_manager.get_current_task()
+    if current_task is not None:
+        task_manager.mark_as_completed(current_task)
+        return current_task.name
+    else:
+        return "'No current task'"

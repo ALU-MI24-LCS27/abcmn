@@ -1,6 +1,8 @@
 import os
 import subprocess
 from datetime import datetime
+from modules.timer import __internal_get_timer_status
+from modules.tasks import __internal_complete_current_task
 
 
 def run_command(command):
@@ -59,6 +61,32 @@ class GitHelper:
             return True
 
 
+def parse_message(raw_message):
+    """Parse message"""
+    # Parsing rules:
+    #     - {{file}} - Name of the file
+    #     - {{date}} - Current date and time
+    #     - {{timer}} - Current timer value
+    #     - {{task}} - Task name
+    #     - {{_<prop>}} you can use _ to escape the curly braces eg, {{_task}} will be replaced with {task}
+    file = "changed name file"
+    date = datetime.now().strftime('%Y-%m-%d')
+    timer = __internal_get_timer_status()
+    task = __internal_complete_current_task()
+
+    parsed_message = raw_message.replace("{{file}}", file)
+    parsed_message = parsed_message.replace("{{date}}", date)
+    parsed_message = parsed_message.replace("{{timer}}", timer)
+    parsed_message = parsed_message.replace("{{task}}", task)
+    # Escape curly braces
+    parsed_message = parsed_message.replace("{{_file}}", "{file}")
+    parsed_message = parsed_message.replace("{{_date}}", "{date}")
+    parsed_message = parsed_message.replace("{{_timer}}", "{timer}")
+    parsed_message = parsed_message.replace("{{_task}}", "{task}")
+
+    return parsed_message
+
+
 def handle_push_command(argv):
     """Handle push command"""
     default_message = None
@@ -76,5 +104,7 @@ def handle_push_command(argv):
                 default_message = file.read().strip()
 
     # Push changes
-    git_helper = GitHelper(default_message)
+    parsed_message = parse_message(default_message)
+    print(parsed_message)
+    git_helper = GitHelper(parsed_message)
     git_helper.push_changes()

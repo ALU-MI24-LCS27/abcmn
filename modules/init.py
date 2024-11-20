@@ -21,7 +21,7 @@ def init_abcmn_dir():
             f.write("[]")
         # write the default message
         with open(os.path.join(".abcmn", "default_message.txt"), 'w') as f:
-            f.write("Update {task} {date}")
+            f.write("Update {{task}} {{date}} {{timer}}")
         # ignore the .abcmn directory in git
         with open(".gitignore", 'a') as f:
             f.write("\n.abcmn/")
