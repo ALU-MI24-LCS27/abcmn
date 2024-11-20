@@ -19,4 +19,10 @@ def init_abcmn_dir():
         # write the empty tasks array
         with open(os.path.join(".abcmn", "tasks.json"), 'w') as f:
             f.write("[]")
-        print("Initialized abcmn")
+        # write the default message
+        with open(os.path.join(".abcmn", "default_message.txt"), 'w') as f:
+            f.write("Update {task} {date}")
+        # ignore the .abcmn directory in git
+        with open(".gitignore", 'a') as f:
+            f.write("\n.abcmn/")
+        print("Initialized abcmn")
