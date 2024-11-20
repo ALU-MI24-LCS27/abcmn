@@ -119,7 +119,7 @@ class BackgroundTimer:
 
         print("Timer reset")
 
-    def status(self):
+    def status(self, loggable=True):
         if self.is_running():
             try:
                 with open(self.start_time_file, 'r') as f:
@@ -128,7 +128,8 @@ class BackgroundTimer:
                     hours = int(elapsed // 3600)
                     minutes = int((elapsed % 3600) // 60)
                     seconds = int(elapsed % 60)
-                    print(f"Timer is running for {hours:02d}:{minutes:02d}:{seconds:02d}")
+                    if loggable:
+                        print(f"Timer is running for {hours:02d}:{minutes:02d}:{seconds:02d}")
                     time_stamp = datetime(
                         hour=hours,
                         minute=minutes,
@@ -139,10 +140,12 @@ class BackgroundTimer:
                     )
                     return time_stamp.strftime('%H-%M-%S')
             except FileNotFoundError:
-                print("Timer is running (start time unknown)")
+                if loggable:
+                    print("Timer is running (start time unknown)")
                 return None
         else:
-            print("Timer is not running")
+            if loggable:
+                print("Timer is not running")
             return None
 
 
@@ -172,5 +175,5 @@ def __internal_get_timer_status():
         sys.exit(1)
 
     timer = BackgroundTimer()
-    timer_status = timer.status()
+    timer_status = timer.status(loggable=False)
     return timer_status if timer_status is not None else "'Timer not running'"
