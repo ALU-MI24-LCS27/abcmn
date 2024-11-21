@@ -39,12 +39,12 @@ abcmn <command> [options]
 - **--message**: the commit message template to use once
 - **--defaultmessage**: the default commit message template when not specified
 
-### Variables (commit message template):
-- **\$date**: the current date
-- **\$timer**: the current timer value
-- **\$task**: the current task *# under development*
+### Variables (used in commit message template):
+- **{{date}}**: the current date
+- **{{timer}}**: the current timer value
+- **{{task}}**: the current task
 <br/>
-*variables are coming soon...*
+
 <br/><br/>
 <br/>*This project is still in development, so please be patient and stay tuned for updates!*
 <br/>*Windows support is coming soon...*
