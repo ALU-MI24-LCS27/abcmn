@@ -200,11 +200,5 @@ def handle_tasks_command(argv):
         return
 
 
-def __internal_complete_complete_task():
-    # current_task = task_manager.get_current_task()
-    # if current_task is not None:
-    #     task_manager.mark_as_completed(current_task)
-    #     return current_task.name
-    # else:
-    #     return "'No current task'"
+def __internal_complete_task():
     return complete_task(loggable=False)

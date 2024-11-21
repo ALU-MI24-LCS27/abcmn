@@ -2,7 +2,7 @@ import os
 import subprocess
 from datetime import datetime
 from modules.timer import __internal_get_timer_status_and_stop
-from modules.tasks import __internal_complete_complete_task
+from modules.tasks import __internal_complete_task
 
 
 def run_command(command):
@@ -72,7 +72,7 @@ def parse_message(raw_message):
     file = "changed name file"
     date = datetime.now().strftime('%Y-%m-%d')
     timer = __internal_get_timer_status_and_stop()
-    task = __internal_complete_complete_task()
+    task = __internal_complete_task()
 
     parsed_message = raw_message.replace("{{date}}", date)
     parsed_message = parsed_message.replace("{{timer}}", timer)
