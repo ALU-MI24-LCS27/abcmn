@@ -170,7 +170,7 @@ def handle_timer_command(argv):
         print("Invalid command for timer")
 
 
-def __internal_get_timer_status_and_push():
+def __internal_get_timer_status_and_stop():
     __timer_file = os.path.join(".abcmn", "timer_log.lap")
     if not os.path.exists(__timer_file):
         print("No timer log found")
