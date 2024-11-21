@@ -113,7 +113,7 @@ class BackgroundTimer:
     def reset(self, loggable=True):
         # Stop the timer if it's running
         if self.is_running():
-            self.stop()
+            self.stop(loggable)
 
         # Clear the log file
         with open(self.output_file, 'w') as f:
@@ -178,5 +178,5 @@ def __internal_get_timer_status_and_stop():
 
     timer = BackgroundTimer()
     timer_status = timer.status(loggable=False)
-    timer.stop(loggable=False)
+    timer.reset(loggable=False)
     return timer_status if timer_status is not None else "'Timer not running'"
