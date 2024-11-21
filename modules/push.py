@@ -88,11 +88,16 @@ def parse_message(raw_message):
 def handle_push_command(argv):
     """Handle push command"""
     default_message = None
-    if "--message" in argv:
-        index = argv.index("--message")
+    if "--defaultmessage" in argv:
+        index = argv.index("--defaultmessage")
         default_message = argv[index + 1]
         with open(os.path.join(os.getcwd(), ".abcmn", "default_message.txt"), "w") as file:
             file.write(default_message)
+        argv.pop(index + 1)
+        argv.pop(index)
+    elif "--message" in argv:
+        index = argv.index("--message")
+        default_message = argv[index + 1]
         argv.pop(index + 1)
         argv.pop(index)
     else:
