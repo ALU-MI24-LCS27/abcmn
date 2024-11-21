@@ -24,7 +24,8 @@ Timer sub-command:
     reset\t reset the timer
 
 Options (push):
-    --message\t the commit message template
+    --message\t the commit message template to use once
+    --defaultmessage\t the default commit message template when not specified
 
 Variables:
     $date\t the current date

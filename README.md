@@ -36,7 +36,8 @@ abcmn <command> [options]
 - **reset**: reset the timer
 
 ### Options (push):
-- **--message**: the commit message template
+- **--message**: the commit message template to use once
+- **--defaultmessage**: the default commit message template when not specified
 
 ### Variables (commit message template):
 - **\$date**: the current date
