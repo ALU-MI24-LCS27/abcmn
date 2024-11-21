@@ -133,26 +133,30 @@ def update_task():
     task_manager.update(_tasks[task_index][1], task_name)
 
 
-def complete_task():
+def complete_task(loggable=True):
     _tasks = task_manager.list()
     if not _tasks:
-        print("No tasks found.")
-        return
+        if loggable:
+            print("No tasks found.")
+        return "No tasks found"
     for index, task in _tasks:
         print(f"{index + 1}. {task}")
     task_index = int(input("Enter the task index to mark as completed: ")) - 1
     task_manager.mark_as_completed(_tasks[task_index][1])
+    return _tasks[task_index][1].name
 
 
-def uncomplete_task():
+def uncomplete_task(loggable=True):
     _tasks = task_manager.list()
     if not _tasks:
-        print("No tasks found.")
+        if loggable:
+            print("No tasks found.")
         return
     for index, task in _tasks:
         print(f"{index + 1}. {task}")
     task_index = int(input("Enter the task index to mark as uncompleted: ")) - 1
     task_manager.mark_as_uncompleted(_tasks[task_index][1])
+    return _tasks[task_index][1]
 
 
 def list_tasks():
@@ -196,10 +200,11 @@ def handle_tasks_command(argv):
         return
 
 
-def __internal_complete_current_task():
-    current_task = task_manager.get_current_task()
-    if current_task is not None:
-        task_manager.mark_as_completed(current_task)
-        return current_task.name
-    else:
-        return "'No current task'"
+def __internal_complete_complete_task():
+    # current_task = task_manager.get_current_task()
+    # if current_task is not None:
+    #     task_manager.mark_as_completed(current_task)
+    #     return current_task.name
+    # else:
+    #     return "'No current task'"
+    return complete_task(loggable=False)
