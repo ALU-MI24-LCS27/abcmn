@@ -151,13 +151,15 @@ class BackgroundTimer:
             return None
 
 
+timer = BackgroundTimer()
+
+
 def handle_timer_command(argv):
     __timer_file = os.path.join(".abcmn", "timer_log.lap")
     if not os.path.exists(__timer_file):
         print("No timer log found")
         sys.exit(1)
 
-    timer = BackgroundTimer()
     if len(argv) < 3:
         timer.status()
     elif argv[2] == "start":
@@ -176,7 +178,6 @@ def __internal_get_timer_status_and_stop():
         print("No timer log found")
         sys.exit(1)
 
-    timer = BackgroundTimer()
     timer_status = timer.status(loggable=False)
-    timer.reset()
+    timer.reset(loggable=False)
     return timer_status if timer_status is not None else "'Timer not running'"
