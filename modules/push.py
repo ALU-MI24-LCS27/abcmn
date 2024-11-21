@@ -104,4 +104,4 @@ def handle_push_command(argv):
     # Push changes
     parsed_message = parse_message(default_message)
     git_helper = GitHelper(parsed_message)
-    # git_helper.push_changes()
+    git_helper.push_changes()
