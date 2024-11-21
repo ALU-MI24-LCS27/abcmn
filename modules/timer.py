@@ -178,5 +178,5 @@ def __internal_get_timer_status_and_stop():
 
     timer = BackgroundTimer()
     timer_status = timer.status(loggable=False)
-    timer.reset(loggable=False)
+    timer.reset()
     return timer_status if timer_status is not None else "'Timer not running'"
