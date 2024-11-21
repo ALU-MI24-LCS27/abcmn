@@ -37,7 +37,7 @@ abcmn <command> [options]
 
 ### Options (push):
 - **--message**: the commit message template to use once
-- **--defaultmessage**: the default commit message template when not specified
+- **--defaultmessage**: the default commit message template to use when not specified
 
 ### Variables (used in commit message template):
 - **{{date}}**: the current date
