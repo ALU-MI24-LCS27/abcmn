@@ -179,8 +179,5 @@ def __internal_get_timer_status_and_stop():
         sys.exit(1)
 
     timer_status = timer.status(loggable=False)
-    # run the reset shell command `abcmn timer reset`
-    proc = subprocess.Popen(
-        ["abcmn", "timer", "reset"])
-    proc.wait()
+    timer.reset(loggable=False)
     return timer_status if timer_status is not None else "'Timer not running'"
