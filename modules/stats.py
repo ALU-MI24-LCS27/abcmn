@@ -14,7 +14,7 @@ class Stats:
     def get_stats(self):
         self.completed_tasks = len([task for task in task_manager.list() if task[1].completed])
         self.pending_tasks = len([task for task in task_manager.list() if not task[1].completed])
-        self.commits = 0  # TODO: get commits made
+        self.commits = 0  #to do git task manager
 
 
 def handle_stats_command():
