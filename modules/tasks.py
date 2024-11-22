@@ -10,24 +10,24 @@ class Task:
     Task class
     """
 
-    def __init__(self, name, completed=False):
-        self.__name = name
-        self.__completed = completed
+    # def __init__(self, name, completed=False):
+    #     self.__name = name
+    #     self.__completed = completed
 
-    def __str__(self):
-        return f"{self.__name} {'[x]' if self.__completed else '[ ]'}"
+    # def __str__(self):
+    #     return f"{self.__name} {'[x]' if self.__completed else '[ ]'}"
 
-    def __repr__(self):
-        return self.__str__()
+    # def __repr__(self):
+    #     return self.__str__()
 
-    def mark_as_completed(self):
-        self.__completed = True
+    # def mark_as_completed(self):
+    #     self.__completed = True
 
-    def mark_as_uncompleted(self):
-        self.__completed = False
+    # def mark_as_uncompleted(self):
+    #     self.__completed = False
 
-    def update(self, name):
-        self.__name = name
+    # def update(self, name):
+    #     self.__name = name
 
     def to_dict(self):
         return {"name": self.__name, "completed": self.__completed}
