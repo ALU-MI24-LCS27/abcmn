@@ -26,11 +26,11 @@ class Task:
     def mark_as_uncompleted(self):
         self.__completed = False
 
-    # def update(self, name):
-    #     self.__name = name
+    def update(self, name):
+        self.__name = name
 
-    # def to_dict(self):
-    #     return {"name": self.__name, "completed": self.__completed}
+    def to_dict(self):
+        return {"name": self.__name, "completed": self.__completed}
 
     @staticmethod
     def from_dict(data):
