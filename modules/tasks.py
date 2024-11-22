@@ -105,9 +105,9 @@ class TaskManager:
 task_manager = TaskManager()
 
 
-# def add_task():
-#     task_name = input("Enter the task name: ")
-#     task_manager.add(Task(task_name))
+def add_task():
+    task_name = input("Enter the task name: ")
+    task_manager.add(Task(task_name))
 
 
 def remove_task():
