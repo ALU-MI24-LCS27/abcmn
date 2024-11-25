@@ -1,6 +1,7 @@
 #!/usr/bin/python3
 import json
 import os
+import sys
 
 from modules.help_messages import usage_message
 
@@ -106,8 +107,12 @@ task_manager = TaskManager()
 
 
 def add_task():
-    task_name = input("Enter the task name: ")
-    task_manager.add(Task(task_name))
+    try:
+        task_name = input("Enter the task name: ")
+        task_manager.add(Task(task_name))
+    except KeyboardInterrupt:
+        print("\nTask addition cancelled.")
+        sys.exit(0)
 
 
 def remove_task():
@@ -117,8 +122,12 @@ def remove_task():
         return
     for index, task in _tasks:
         print(f"{index + 1}. {task}")
-    task_index = int(input("Enter the task index to remove: ")) - 1
-    task_manager.remove(_tasks[task_index][1])
+    try:
+        task_index = int(input("Enter the task index to remove: ")) - 1
+        task_manager.remove(_tasks[task_index][1])
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
+        sys.exit(1)
 
 
 def update_task():
@@ -128,8 +137,16 @@ def update_task():
         return
     for index, task in _tasks:
         print(f"{index + 1}. {task}")
-    task_index = int(input("Enter the task index to update: ")) - 1
-    task_name = input("Enter the new task name: ")
+    try:
+        task_index = int(input("Enter the task index to update: ")) - 1
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
+        sys.exit(1)
+    try:
+        task_name = input("Enter the new task name: ")
+    except KeyboardInterrupt:
+        print("\nTask update cancelled.")
+        sys.exit(0)
     task_manager.update(_tasks[task_index][1], task_name)
 
 
@@ -141,7 +158,11 @@ def complete_task(loggable=True):
         return "No tasks found"
     for index, task in _tasks:
         print(f"{index + 1}. {task}")
-    task_index = int(input("Enter the task index to mark as completed: ")) - 1
+    try:
+        task_index = int(input("Enter the task index to mark as completed: ")) - 1
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
+        sys.exit(1)
     task_manager.mark_as_completed(_tasks[task_index][1])
     return _tasks[task_index][1].name
 
@@ -154,7 +175,11 @@ def uncomplete_task(loggable=True):
         return
     for index, task in _tasks:
         print(f"{index + 1}. {task}")
-    task_index = int(input("Enter the task index to mark as uncompleted: ")) - 1
+    try:
+        task_index = int(input("Enter the task index to mark as uncompleted: ")) - 1
+    except ValueError:
+        print("Invalid input. Please enter a valid number.")
+        sys.exit(1)
     task_manager.mark_as_uncompleted(_tasks[task_index][1])
     return _tasks[task_index][1]
 

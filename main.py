@@ -1,23 +1,29 @@
 import sys
 import os
+import signal
 # import modules
 from modules.help_messages import usage_message
 from modules.init import init_abcmn_dir
 from modules.stats import handle_stats_command
 from modules.tasks import handle_tasks_command
 from modules.timer import handle_timer_command
+from modules.utils import exit_gracefully
 from modules.version import __version__ as app_version
 from modules.push import handle_push_command
 
 # abcmn cli tool entry point
 # read the README.md file for the tool usage information
 
-if __name__ == "__main__":
+def main():
     argv = sys.argv
     argc = len(argv)
     if argc < 2:
         print(usage_message)
         sys.exit(1)
+
+    # handle SIGINT and SIGTERM signals
+    signal.signal(signal.SIGINT, exit_gracefully)
+    signal.signal(signal.SIGTERM, exit_gracefully)
 
     if argv[1] == "init":
         init_abcmn_dir()
@@ -47,3 +53,10 @@ if __name__ == "__main__":
         print(usage_message)
         sys.exit(1)
     sys.exit(0)
+
+if __name__ == "__main__":
+    try:
+        main()
+    except Exception as e:
+        print(f"Error: {e}")
+        sys.exit(1)
