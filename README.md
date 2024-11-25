@@ -27,7 +27,7 @@ abcmn <command> [options]
 - **remove**: remove a task
 - **update**: update a task
 - **complete**: mark a task as completed
-- **uncomplete**: mark a task as uncompleted
+- **uncomplete**: mark a task as uncompleted by the user
 
 ### Timer sub-command:
 - **\<empty\>**: show the timer status
