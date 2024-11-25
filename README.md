@@ -45,9 +45,9 @@ abcmn <command> [options]
 - **{{task}}**: the current task
 <br/>
 
-<br/><br/>
 <br/>*This project is still in development, so please be patient and stay tuned for updates!*
 <br/>*Windows support is coming soon...*
 <br/>*Feel free to contribute to the project by forking the repository and submitting a pull request!*
 <br/>*In case of any issues, please submit an issue on the repository!*
+<br/>*To learn more about how git works watch [Git Internals](https://www.youtube.com/watch?v=fWMKue-WBok&list=PL9lx0DXCC4BNUby5H58y6s2TQVLadV8v7)*<br/>
 <br/>*Thank you for your support!*
